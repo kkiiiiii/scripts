@@ -1,0 +1,99 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Infinite Rarities", "Sentinel")
+
+getgenv().SelectedOption = nil
+getgenv().rollSpeed = nil
+getgenv().tpSpeed = nil
+
+function doStuff()
+    while getgenv().SelectedOption == "Auto Roll" do
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+       wait()
+    end
+    
+    while getgenv().SelectedOption == "Auto Farm Rarity" do
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+       wait(getgenv().rollSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 39) --Sacrifice
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 2) --SP Multiplier
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 27) --Luck
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 20) --Cooldown
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 11) --Bulk
+       wait(getgenv().tpSpeed)
+    end
+    
+    while getgenv().SelectedOption == "Auto Prestige" do
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+       wait(getgenv().rollSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, -41) --Prestige
+       wait(getgenv().tpSpeed)
+    end
+    
+    while getgenv().SelectedOption == "Auto Prestige (Upgrades)" do
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+       wait(getgenv().rollSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, -41) --Prestige
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(27, 3, -41) --Prestige Luck
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19, 3, -41) --Prestige SPM
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(11, 3, -41) --Prestige Multiplier
+       wait(getgenv().tpSpeed)
+    end
+    
+    while getgenv().SelectedOption == "Auto Ascend" do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+        wait(getgenv().rollSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-41, 3, -41) --Ascend
+        wait(getgenv().tpSpeed)
+    end
+    
+    while getgenv().SelectedOption == "Auto Ascend (Upgrades)" do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+        wait(getgenv().rollSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-41, 3, -41) --Ascend
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-93, 16, -18) --Ascend Luck
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-93, 16, -10) --Ascend SPM
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-93, 16, -2) --Ascend PPM
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-93, 16, 6) --Ascend Multiplier
+        wait(getgenv().tpSpeed)
+    end
+end
+
+--MAIN TAB
+local Main = Window:NewTab("Main")
+local Player = Window:NewTab("Player")
+local Misc = Window:NewTab("Misc")
+local MainSection = Main:NewSection("Main")
+local PlayerSection = Player:NewSection("Player")
+local MiscSection = Misc:NewSection("Misc")
+
+MainSection:NewDropdown("Auto Farm", "DropdownInf", {"Stop Auto Farm", "Auto Roll", "Auto Farm Rarity", "Auto Prestige", "Auto Prestige (Upgrades)", "Auto Ascend", "Auto Ascend (Upgrades)"}, function(currentOption)
+    getgenv().SelectedOption = currentOption
+    doStuff()
+end)
+
+MainSection:NewSlider("Roll Speed", "How long you'll be on the roll pad before teleporting.", 10, 1, function(rollSpeed) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().rollSpeed = rollSpeed
+end)
+
+MainSection:NewSlider("Teleport Speed", "How long it takes before you tp to anything.", 10, 1, function(tpSpeed) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().tpSpeed = tpSpeed
+end)
+
+PlayerSection:NewSlider("Walk Speed", "Change how fast you walk?", 100, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+MiscSection:NewKeybind("Toggle UI", "Open/Close the UI", Enum.KeyCode.RightAlt, function()
+    Library:ToggleUI()
+end)
