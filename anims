@@ -1,0 +1,196 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Animation Changer (R15)", "Ocean")
+local Animate = game.Players.LocalPlayer.Character.Animate
+
+getgenv().Idle = nil
+getgenv().Walk = nil
+getgenv().Run = nil
+getgenv().Jump = nil
+getgenv().Fall = nil
+getgenv().Climb = nil
+getgenv().Swim = nil
+
+function idleAnims()
+    if getgenv().Idle == "Rthro" then
+       Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=2510197257"
+       Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=2510196951"
+    end
+    
+    if getgenv().Idle == "Old School" then
+       Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=10921230744"
+       Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=10921232093"
+    end
+    
+    if getgenv().Idle == "Robot" then
+       Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616088211"
+       Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616089559"
+    end
+    
+    if getgenv().Idle == "Stylish" then
+       Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616136790"
+       Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616138447"
+    end
+end
+
+function walkAnims()
+    if getgenv().Walk == "Rthro" then
+       Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=2510202577"
+    end
+    
+    if getgenv().Walk == "Old School" then
+       Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921244891"
+    end
+    
+    if getgenv().Walk == "Robot" then
+       Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616095330"
+    end
+    
+    if getgenv().Walk == "Stylish" then
+       Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616146177"
+    end
+end
+
+function runAnims()
+    if getgenv().Run == "Rthro" then
+       Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=2510198475"
+    end
+    
+    if getgenv().Run == "Old School" then
+       Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=10921240218"
+    end
+    
+    if getgenv().Run == "Robot" then
+       Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616091570"
+    end
+    
+    if getgenv().Run == "Stylish" then
+       Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616140816"
+    end
+end
+
+function jumpAnims()
+    if getgenv().Jump == "Rthro" then
+       Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=2510197830"
+    end
+    
+    if getgenv().Jump == "Old School" then
+       Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=10921242013"
+    end
+    
+    if getgenv().Jump == "Robot" then
+       Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616090535"
+    end
+    
+    if getgenv().Jump == "Stylish" then
+       Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616139451"
+    end
+end
+
+function fallAnims()
+    if getgenv().Fall == "Rthro" then
+       Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=2510195892"
+    end
+    
+    if getgenv().Fall == "Old School" then
+       Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921241244"
+    end
+    
+    if getgenv().Fall == "Rthro" then
+       Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616087089"
+    end
+    
+    if getgenv().Fall == "Stylish" then
+       Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616134815"
+    end
+end
+
+function climbAnims()
+    if getgenv().Climb == "Rthro" then
+       Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=2510192778"
+    end
+    
+    if getgenv().Climb == "Old School" then
+       Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921229866"
+    end
+    
+    if getgenv().Climb == "Robot" then
+       Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616086039"
+    end
+    
+    if getgenv().Climb == "Stylish" then
+       Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616133594"
+    end
+end
+
+function swimAnims()
+    if getgenv().Swim == "Rthro" then
+       Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=2510201162"
+       Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=2510199791"
+    end
+    
+    if getgenv().Swim == "Old School" then
+       Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=10921244018"
+       Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=10921243048"
+    end
+    
+    if getgenv().Swim == "Robot" then
+       Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=616094091"
+       Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=616092998"
+    end
+    
+    if getgenv().Swim == "Stylish" then
+       Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=616144772"
+       Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=616143378"
+    end
+end
+
+--CREDITS
+local Credits = Window:NewTab("Credits")
+local CreditsSection = Credits:NewSection("Credits")
+CreditsSection:NewLabel("Credits to myself. (kki)")
+
+--MAIN
+local Anims = Window:NewTab("Main")
+local AnimSection = Anims:NewSection("Animation List")
+
+AnimSection:NewLabel("Idles")
+AnimSection:NewDropdown("Idle Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Idle)
+    getgenv().Idle = Idle
+    idleAnims()
+end)
+
+AnimSection:NewLabel("Walk")
+AnimSection:NewDropdown("Walk Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Walk)
+    getgenv().Walk = Walk
+    walkAnims()
+end)
+
+AnimSection:NewLabel("Run")
+AnimSection:NewDropdown("Run Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Run)
+    getgenv().Run = Run
+    runAnims()
+end)
+
+AnimSection:NewLabel("Jump")
+AnimSection:NewDropdown("Jump Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Jump)
+    getgenv().Jump = Jump
+    jumpAnims()
+end)
+
+AnimSection:NewLabel("Fall")
+AnimSection:NewDropdown("Fall Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Fall)
+    getgenv().Fall = Fall
+    fallAnims()
+end)
+
+AnimSection:NewLabel("Climb")
+AnimSection:NewDropdown("Climb Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Climb)
+    getgenv().Climb = Climb
+    climbAnims()
+end)
+
+AnimSection:NewLabel("Swim")
+AnimSection:NewDropdown("Swim Animations", "Literally just walk.", {"Rthro", "Old School", "Robot", "Stylish", "Bubbly", "Cartoony", "Elder", "Mage", "Superhero", "Toy", "Astronaut", "Knight", "Vampire", "Werewolf", "Zombie", "Ninja", "Pirate", "Levitation"}, function(Swim)
+    getgenv().Swim = Swim
+    swimAnims()
+end)
