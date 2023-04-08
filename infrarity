@@ -1,9 +1,13 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Infinite Rarities", "Sentinel")
 
+local lp = game.Players.LocalPlayer
+local data = lp.PlayerData.HighestRarity
+
 getgenv().SelectedOption = nil
 getgenv().rollSpeed = nil
 getgenv().tpSpeed = nil
+getgenv().DataValue = nil
 
 function doStuff()
     while getgenv().SelectedOption == "Auto Roll" do
@@ -29,8 +33,22 @@ function doStuff()
     while getgenv().SelectedOption == "Auto Prestige" do
        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
        wait(getgenv().rollSpeed)
-       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, -41) --Prestige
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 39) --Sacrifice
        wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 27) --SP Multiplier
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 2) --Luck
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 20) --Cooldown
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 11) --Bulk
+       wait(getgenv().tpSpeed)
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+       wait(getgenv().rollSpeed)
+        if data.Value >= getgenv().DataValue then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, -41) --Prestige
+            wait(getgenv().tpSpeed)
+        end
     end
     
     while getgenv().SelectedOption == "Auto Prestige (Upgrades)" do
@@ -80,6 +98,22 @@ local MiscSection = Misc:NewSection("Misc")
 MainSection:NewDropdown("Auto Farm", "DropdownInf", {"Stop Auto Farm", "Auto Roll", "Auto Farm Rarity", "Auto Prestige", "Auto Prestige (Upgrades)", "Auto Ascend", "Auto Ascend (Upgrades)"}, function(currentOption)
     getgenv().SelectedOption = currentOption
     doStuff()
+end)
+
+MainSection:NewDropdown("Rarities", "DropdownInf", {
+    1, 2, 3, 4, 5,
+    6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15,
+    16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25,
+    26, 27, 28, 29, 30,
+    31, 32, 33, 34, 35,
+    36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45,
+    46, 47, 48, 49, 50,
+    51, 52, 53, 54, 55,
+    56, 57, 58, 59, 60, }, function(rarityValue)
+    getgenv().DataValue = rarityValue
 end)
 
 MainSection:NewSlider("Roll Speed", "How long you'll be on the roll pad before teleporting.", 10, 1, function(rollSpeed) -- 500 (MaxValue) | 0 (MinValue)
