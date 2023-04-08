@@ -1,0 +1,349 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("YES UI", "DarkTheme")
+
+--Tween Stuff
+local teleport_table = {
+    roll = Vector3.new(0, 3, 40),
+    sacrifice = Vector3.new(40, 3, 39),
+    spluck = Vector3.new(40, 3, 27),
+    spcd = Vector3.new(40, 3, 19),
+    spbulk = Vector3.new(40, 3, 12),
+    spmulti = Vector3.new(40, 3, 3),
+    spcdside = Vector3.new(35, 3, 20),
+    spmultiside = Vector3.new(34, 3, 28),
+    spmultiside2 = Vector3.new(35, 3, 3),
+    prestige = Vector3.new(40, 3, -41),
+    prestigeluck = Vector3.new(27, 3, -41),
+    prestigespm = Vector3.new(19, 3, -41),
+    prestigemulti = Vector3.new(12, 3, -41),
+    ascend = Vector3.new(-40, 3, -40),
+    ascendluck = Vector3.new(-93, 16, -18),
+    ascendspm = Vector3.new(-93, 16, -10),
+    ascendppmulti = Vector3.new(-93, 16, -2),
+    ascendmulti = Vector3.new(-93, 16, 6),
+    ascendluckside = Vector3.new(-88, 16, -18),
+    ascendmultiside = Vector3.new(-88, 16, 6),
+    settings = Vector3.new(-42, 3, 23),
+    pvpportal = Vector3.new(61, 3, -5),
+    pvparea = Vector3.new(68, 3, -5),
+    pvpareaportal = Vector3.new(62, 3, -10004),
+    lobby = Vector3.new(68, 3, -10004),
+    killluck = Vector3.new(61, 3, -9947)
+}
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function Tween(v)
+    if lp.Character and
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+       local cf = CFrame.new(v)
+       local a = tween_s:Create(lp.Character.HumanoidRootPart, tweeninfo, {CFrame=cf})
+       a:Play()
+    end
+end
+
+--GETGENV()
+getgenv().Farm = nil
+getgenv().RollTime = nil
+getgenv().TweenTime = nil
+getgenv().TweenOptions = nil
+
+function AutoFarm()
+    while getgenv().Farm == "Auto Roll" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+    end
+    
+    while getgenv().Farm == "Auto Farm Rarity" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.sacrifice)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcdside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcd)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spbulk)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Farm Prestige (Rarity and Prestige)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.sacrifice)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcdside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcd)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spbulk)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.sacrifice)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcdside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcd)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spbulk)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.prestige)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Farm Prestige (Prestige Only)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.prestige)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Farm Prestige (Upgrades)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.prestige)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.prestigeluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.prestigespm)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.prestigemulti)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Ascend (Rarity and Ascend)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.sacrifice)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcdside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcd)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spbulk)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.sacrifice)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spmultiside2)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcdside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spcd)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.spbulk)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.ascend)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Ascend (Ascend Only)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.ascend)
+       wait(getgenv().TweenTime)
+    end
+    
+    while getgenv().Farm == "Auto Ascend (Upgrades)" do
+       Tween(teleport_table.roll)
+       wait(getgenv().RollTime)
+       Tween(teleport_table.ascend)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendluck)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendluckside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendmultiside)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendppmulti)
+       wait(getgenv().TweenTime)
+       Tween(teleport_table.ascendspm)
+       wait(getgenv().TweenTime)
+    end
+end
+
+function TweenTo()
+   if getgenv().TweenOptions == "Roll" then
+       Tween(teleport_table.roll)   
+   end
+
+    if getgenv().TweenOptions == "Sacrifice" then
+       Tween(teleport_table.sacrifice)   
+    end
+    
+    if getgenv().TweenOptions == "SP Luck" then
+       Tween(teleport_table.spluck)   
+    end
+    
+    if getgenv().TweenOptions == "SP Cooldown" then
+       Tween(teleport_table.spcd)   
+    end
+    
+    if getgenv().TweenOptions == "SP Bulk" then
+       Tween(teleport_table.spbulk)   
+    end
+    
+    if getgenv().TweenOptions == "SP Multiplier" then
+       Tween(teleport_table.spmulti)   
+    end
+    
+    if getgenv().TweenOptions == "Prestige" then
+       Tween(teleport_table.prestige)   
+    end
+    
+    if getgenv().TweenOptions == "Prestige Luck" then
+       Tween(teleport_table.prestigeluck)   
+    end
+    
+    if getgenv().TweenOptions == "Prestige SPM" then
+       Tween(teleport_table.prestigespm)   
+    end
+    
+    if getgenv().TweenOptions == "Prestige Multiplier" then
+       Tween(teleport_table.prestigemulti)   
+    end
+    
+    if getgenv().TweenOptions == "Ascend" then
+       Tween(teleport_table.ascend)   
+    end
+    
+    if getgenv().TweenOptions == "Ascend Luck" then
+       Tween(teleport_table.ascendluck)   
+    end
+    
+    if getgenv().TweenOptions == "Ascend SPM" then
+       Tween(teleport_table.ascendspm)   
+    end
+    
+    if getgenv().TweenOptions == "Ascend PP Multiplier" then
+       Tween(teleport_table.ascendppmulti)   
+    end
+    
+    if getgenv().TweenOptions == "Ascend Multiplier" then
+       Tween(teleport_table.ascendmulti)   
+    end
+    
+    if getgenv().TweenOptions == "Lobby (USE IF YOU'RE IN THE PVP AREA)" then
+       Tween(teleport_table.lobby)
+    end
+
+    if getgenv().TweenOptions == "Settings (USE IF YOU'RE IN THE LOBBY)" then
+       Tween(teleport_table.settings)   
+    end
+    
+    if getgenv().TweenOptions == "PVP Area (USE IF YOU'RE IN THE LOBBY)" then
+       Tween(teleport_table.pvparea)   
+    end
+    
+    if getgenv().TweenOptions == "Kill Luck (USE IF YOU'RE IN THE PVP AREA)" then
+       Tween(teleport_table.killluck)   
+    end
+end
+
+--MAIN TAB
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("AutoFarm")
+MainSection:NewDropdown("AutoFarm", "Just fucking use it!", {"Stop", "Auto Roll", "Auto Farm Rarity","Auto Farm Prestige (Rarity and Prestige)", "Auto Farm Prestige (Prestige Only)", "Auto Farm Prestige (Upgrades)","Auto Ascend (Rarity and Ascend)", "Auto Ascend (Ascend Only)", "Auto Ascend (Upgrades)"}, function(FarmOptions)
+    getgenv().Farm = FarmOptions
+    AutoFarm()
+end)
+
+MainSection:NewSlider("Roll Time", "How long you stay at roll pad.", 10, 1, function(RTime) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().RollTime = RTime
+end)
+
+MainSection:NewSlider("Tween Time", "How fast you tween.", 10, 1, function(TTime) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().TweenTime = TTime
+end)
+
+--TWEEN TAB
+local Tween = Window:NewTab("Tween")
+local SPSection = Tween:NewSection("SP")
+
+SPSection:NewDropdown("Tween to", "Just tweens you to the place you want.", {"Roll", "Sacrifice", "SP Luck", "SP Cooldown", "SP Bulk", "SP Multiplier"}, function(SPOptions)
+    getgenv().TweenOptions = SPOptions
+    TweenTo()
+end)
+
+local PPSection = Tween:NewSection("Prestige")
+
+PPSection:NewDropdown("Tween to", "Just tweens you to the place you want.", {"Prestige", "Prestige Luck", "Prestige SPM", "Prestige Multiplier"}, function(PPOptions)
+    getgenv().TweenOptions = PPOptions
+    TweenTo()
+end)
+
+local AscendSection = Tween:NewSection("Ascend")
+
+AscendSection:NewDropdown("Tween to", "Just tweens you to the place you want.", {"Ascend", "Ascend Luck", "Ascend SPM", "Ascend PP Multiplier", "Ascend Multiplier"}, function(AscendOptions)
+    getgenv().TweenOptions = AscendOptions
+    TweenTo()
+end)
+
+local MapSection = Tween:NewSection("Map")
+
+MapSection:NewDropdown("Tween to", "Just tweens you to the place you want.", {"Lobby (USE IF YOU'RE IN THE PVP AREA)", "Settings (USE IF YOU'RE IN THE LOBBY)", "PVP Area (USE IF YOU'RE IN THE LOBBY)", "Kill Luck (USE IF YOU'RE IN THE PVP AREA)"}, function(MapOptions)
+    getgenv().TweenOptions = MapOptions
+    TweenTo()
+end)
+
+--PLAYER TAB
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Player")
