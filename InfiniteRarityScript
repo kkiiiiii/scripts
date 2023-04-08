@@ -346,4 +346,8 @@ end)
 
 --PLAYER TAB
 local Player = Window:NewTab("Player")
-local PlayerSection = Player:NewSection("Player")
+local SpeedSection = Player:NewSection("Walk Speed")
+
+SpeedSection:NewSlider("Speed", "Literally changes how fast you walk. ", 180, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
