@@ -50,6 +50,7 @@ getgenv().Farm = nil
 getgenv().RollTime = nil
 getgenv().TweenTime = nil
 getgenv().TweenOptions = nil
+getgenv().DataValue = nil
 
 function AutoFarm()
     while getgenv().Farm == "Auto Roll" do
@@ -81,50 +82,33 @@ function AutoFarm()
     end
     
     while getgenv().Farm == "Auto Farm Prestige (Rarity and Prestige)" do
-       Tween(teleport_table.roll)
-       wait(getgenv().RollTime)
-       Tween(teleport_table.sacrifice)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spluck)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmulti)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcdside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcd)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spbulk)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.roll)
-       wait(getgenv().RollTime)
-       Tween(teleport_table.sacrifice)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spluck)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmulti)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcdside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcd)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spbulk)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.roll)
-       wait(getgenv().RollTime)
-       Tween(teleport_table.prestige)
-       wait(getgenv().TweenTime)
+            Tween(teleport_table.roll)
+            wait(getgenv().RollTime)
+            Tween(teleport_table.sacrifice)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spluck)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spmultiside)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spmultiside2)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spmulti)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spmultiside2)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spcdside)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spcd)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.spbulk)
+            wait(getgenv().TweenTime)
+            Tween(teleport_table.roll)
+            wait(getgenv().RollTime)
+        if data.Value >= getgenv().DataValue then
+           Tween(teleport_table.prestige)
+           wait(1)
+           wait(getgenv().TweenTime)
+        end
     end
     
     while getgenv().Farm == "Auto Farm Prestige (Prestige Only)" do
@@ -168,30 +152,11 @@ function AutoFarm()
        wait(getgenv().TweenTime)
        Tween(teleport_table.spbulk)
        wait(getgenv().TweenTime)
-       Tween(teleport_table.roll)
-       wait(getgenv().RollTime)
-       Tween(teleport_table.sacrifice)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spluck)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmulti)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spmultiside2)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcdside)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spcd)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.spbulk)
-       wait(getgenv().TweenTime)
-       Tween(teleport_table.roll)
-       wait(getgenv().RollTime)
-       Tween(teleport_table.ascend)
-       wait(getgenv().TweenTime)
+       if data.Value >= getgenv().DataValue then
+            Tween(teleport_table.ascend)
+            wait(1)
+            wait(getgenv().TweenTime)
+        end
     end
     
     while getgenv().Farm == "Auto Ascend (Ascend Only)" do
@@ -302,6 +267,11 @@ end
 --MAIN TAB
 local Main = Window:NewTab("Main")
 local MainSection = Main:NewSection("AutoFarm")
+
+MainSection:NewSlider("Rank Value", "You basically pick what # of rank you want before it tweens you to Prestige or Ascend. Same goes with TP.", 500, 0, function(dvalue) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().DataValue = dvalue
+end)
+
 MainSection:NewDropdown("AutoFarm", "Just fucking use it!", {"Stop", "Auto Roll", "Auto Farm Rarity","Auto Farm Prestige (Rarity and Prestige)", "Auto Farm Prestige (Prestige Only)", "Auto Farm Prestige (Upgrades)","Auto Ascend (Rarity and Ascend)", "Auto Ascend (Ascend Only)", "Auto Ascend (Upgrades)"}, function(FarmOptions)
     getgenv().Farm = FarmOptions
     AutoFarm()
