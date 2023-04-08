@@ -1,6 +1,35 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Infinite Rarities", "Sentinel")
 
+--TP LOCATIONS
+local tploc = {
+    roll = CFrame.new(0, 3, 40),
+    sacrifice = CFrame.new(40, 3, 39),
+    spluck = CFrame.new(40, 3, 27),
+    spcd = CFrame.new(40, 3, 19),
+    spbulk = CFrame.new(40, 3, 12),
+    spmulti = CFrame.new(40, 3, 3),
+    spcdside = CFrame.new(35, 3, 20),
+    spmultiside = CFrame.new(34, 3, 28),
+    spmultiside2 = CFrame.new(35, 3, 3),
+    prestige = CFrame.new(40, 3, -41),
+    prestigeluck = CFrame.new(27, 3, -41),
+    prestigespm = CFrame.new(19, 3, -41),
+    prestigemulti = CFrame.new(12, 3, -41),
+    ascend = CFrame.new(-40, 3, -40),
+    ascendluck = CFrame.new(-93, 16, -18),
+    ascendspm = CFrame.new(-93, 16, -10),
+    ascendppmulti = CFrame.new(-93, 16, -2),
+    ascendmulti = CFrame.new(-93, 16, 6),
+    ascendluckside = CFrame.new(-88, 16, -18),
+    ascendmultiside = CFrame.new(-88, 16, 6),
+    settings = CFrame.new(-42, 3, 23),
+    pvpportal = CFrame.new(61, 3, -5),
+    pvparea = CFrame.new(68, 3, -5),
+    pvpareaportal = CFrame.new(62, 3, -10004),
+    lobby = CFrame.new(68, 3, -10004),
+    killluck = CFrame.new(61, 3, -9947)
+}
 local lp = game.Players.LocalPlayer
 local data = lp.PlayerData.HighestRarity
 
@@ -8,6 +37,7 @@ getgenv().SelectedOption = nil
 getgenv().rollSpeed = nil
 getgenv().tpSpeed = nil
 getgenv().DataValue = nil
+getgenv().tpPlace = nil
 
 function doStuff()
     while getgenv().SelectedOption == "Auto Roll" do
@@ -67,8 +97,22 @@ function doStuff()
     while getgenv().SelectedOption == "Auto Ascend" do
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
         wait(getgenv().rollSpeed)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-41, 3, -41) --Ascend
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 39) --Sacrifice
         wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 27) --SP Multiplier
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 2) --Luck
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 20) --Cooldown
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 11) --Bulk
+        wait(getgenv().tpSpeed)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40) --Roll
+        wait(getgenv().rollSpeed)
+        if data.Value >= getgenv().DataValue then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-41, 3, -41) --Ascend
+            wait(getgenv().tpSpeed)
+        end
     end
     
     while getgenv().SelectedOption == "Auto Ascend (Upgrades)" do
@@ -87,13 +131,28 @@ function doStuff()
     end
 end
 
+function TP()
+    if getgenv().tpPlaces == "Roll" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 3, 40)
+    elseif getgenv().tpPlaces == "Sacrifice" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 39)
+    elseif getgenv().tpPlaces == "SP Luck" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(40, 3, 2)
+    end
+end
+
 --MAIN TAB
 local Main = Window:NewTab("Main")
+local TPTab = Window:NewTab("Teleport")
 local Player = Window:NewTab("Player")
 local Misc = Window:NewTab("Misc")
 local MainSection = Main:NewSection("Main")
 local PlayerSection = Player:NewSection("Player")
 local MiscSection = Misc:NewSection("Misc")
+local SPSection = TPTab:NewSection("SP")
+local PPSection = TPTab:NewSection("PP")
+local AscendSection = TPTab:NewSection("Ascend")
+local MapSection = TPTab:NewSection("Map")
 
 MainSection:NewDropdown("Auto Farm", "DropdownInf", {"Stop Auto Farm", "Auto Roll", "Auto Farm Rarity", "Auto Prestige", "Auto Prestige (Upgrades)", "Auto Ascend", "Auto Ascend (Upgrades)"}, function(currentOption)
     getgenv().SelectedOption = currentOption
@@ -130,4 +189,10 @@ end)
 
 MiscSection:NewKeybind("Toggle UI", "Open/Close the UI", Enum.KeyCode.RightAlt, function()
     Library:ToggleUI()
+end)
+
+SPSection:NewDropdown("Teleport to", "Teleports you..", {"Roll", "Sacrifice", "SP Luck", "SP Cooldown", "SP Bulk", "SP Multiplier"}, function(SPOptions)
+    getgenv().tpPlaces = SPOptions
+    TP()
+    print("asdwasdwa")
 end)
