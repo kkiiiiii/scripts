@@ -1,0 +1,90 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Race Clicker", "DarkTheme")
+
+local tweenTo = {
+    spawn = Vector3.new(5, 5, 10),
+    w = Vector3.new(-442400, 4, 0)
+}
+
+--Locals
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+local lp = game.Players.LocalPlayer
+local gate = game:GetService("Workspace").LoadedWorld.WorldMain.Door.Gate
+
+--Getgenvs
+getgenv().tSpeed = nil
+_G.Rebirth = false
+_G.Farm = false
+
+--Functions
+
+function gateOpen()
+    Tween(tweenTo.w)
+    wait(1)
+end
+
+function gateClosed()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5, 5, 10)
+    wait(1)
+end
+
+function Tween(v)
+    if lp.Character and
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+       local cf = CFrame.new(v)
+       local a = tween_s:Create(lp.Character.HumanoidRootPart, tweeninfo, {CFrame=cf})
+       a:Play()
+    end
+end
+
+--Main
+local Main = Window:NewTab("Main")
+local autoFarm = Main:NewSection("Auto Farm")
+local autoRebirth = Main:NewSection("Auto Rebirth")
+
+autoFarm:NewToggle("Auto Win", "ToggleInfo", function(state)
+    if state then
+        _G.Farm = true
+        while _G.Farm == true do
+           if gate.CanCollide == false then
+            gateOpen()
+            wait(getgenv().tSpeed)
+            elseif gate.CanCollide == true then
+            gateClosed()
+            wait(.3)
+            end
+        end
+    else
+        _G.Farm = nil
+    end
+end)
+
+autoFarm:NewDropdown("Tween Speed", "DropdownInf", {
+    0.1, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1,
+    1.1, 1.2, 1.3, 1.4, 1.5,
+    1.6, 1.7, 1.8, 1.9, 2,
+    2.1, 2.2, 2.3, 2.4, 2.5,
+    2.6, 2.7, 2.8, 2.9, 3,
+    3.1, 3.2, 3.3, 3.4, 3.5,
+    3.6, 3.7, 3.8, 3.9, 4,
+    4.1, 4.2, 4.3, 4.4, 4.5,
+    4.6, 4.7, 4.8, 4.9, 5,
+    
+}, function(tweenSpeed)
+    getgenv().tSpeed = tweenSpeed
+end)
+
+autoRebirth:NewToggle("Auto Rebirth", "ToggleInfo", function(state)
+    if state then
+        if _G.Rebirth == false then
+           _G.Rebirth = true
+           while _G.Rebirth == true do
+               game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth:InvokeServer()
+            end
+        end
+    else
+        _G.Rebirth = nil
+    end
+end)
