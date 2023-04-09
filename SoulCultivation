@@ -1,0 +1,131 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Soul Cultivation", "Sentinel")
+
+--Local
+local lp = game.Players.LocalPlayer
+local cultivating = game.Players.LocalPlayer.stats.IsCultivating
+local Noclip = nil
+local Clip = nil
+
+--Getgenv
+getgenv().SelectedOption = nil
+getgenv().tpSpeed = nil
+getgenv().DataValue = nil
+getgenv().tpPlace = nil
+_G.Enabled = false
+
+local tp_table = {
+    yinyangtree = Vector3.new(213, 77, 894),
+    fountain = Vector3.new(683, 73, -514),
+    statue = Vector3.new(-1425, 30, 954),
+    minecave = Vector3.new(-1442, 30, 1167),
+    waterfall = Vector3.new(-1444, 211, 1263)
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+
+--Functions
+
+function TP(v)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v)
+end
+
+function autoCulti()
+        local args = {
+        [1] = true
+    }
+
+    game:GetService("ReplicatedStorage"):FindFirstChild("Qi Remote Events").Cultivate:FireServer(unpack(args))
+end
+
+function stopCulti()
+        local args = {
+        [1] = false
+    }
+
+    game:GetService("ReplicatedStorage"):FindFirstChild("Qi Remote Events").Cultivate:FireServer(unpack(args))
+end
+
+function noclip()
+	Clip = false
+	local function Nocl()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+					v.CanCollide = false
+				end
+			end
+		end
+		wait(0.21) -- basic optimization
+	end
+	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+	if Noclip then Noclip:Disconnect() end
+	Clip = true
+end
+
+function TweenTo()
+    if getgenv().tpPlace == "Fountain" then
+       TP(tp_table.fountain)
+    end
+    
+    if getgenv().tpPlace == "Yin Yang Tree" then
+       TP(tp_table.yinyangtree)
+    end
+    
+    if getgenv().tpPlace == "Statue" then
+       TP(tp_table.statue)
+    end
+    
+    if getgenv().tpPlace == "Minecave" then
+       TP(tp_table.minecave)
+    end
+    
+    if getgenv().tpPlace == "Waterfall" then
+       TP(tp_table.waterfall)
+    end
+end
+
+--Main
+local Main = Window:NewTab("Main")
+local autoFarm = Main:NewSection("Auto Farm")
+
+autoFarm:NewToggle("Auto Farm", "ToggleInfo", function(state)
+    if state then
+        noclip()
+        if _G.Enabled == false then
+           _G.Enabled = true
+            while _G.Enabled == true do
+                wait()
+                TweenTo()
+                wait(5)
+            end
+        end
+    else
+        _G.Enabled = false
+        clip()
+    end
+end)
+
+autoFarm:NewToggle("Auto Cultivate", "ToggleInfo", function(state)
+    if state then
+        if cultivating.Value == false then
+           cultivating.Value = true
+            while cultivating.Value == true do
+                wait()
+                autoCulti()
+                wait(5)
+            end
+        end
+    else
+        cultivating.Value = false
+        stopCulti()
+    end
+end)
+
+autoFarm:NewDropdown("Training Zones", "DropdownInf", {"Fountain", "Yin Yang Tree", "Statue", "Minecave", "Waterfall"}, function(trainingZones)
+    getgenv().tpPlace = trainingZones
+end)
